@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti mi amor 💗</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:#071f68;
+}
+
+/* Fondo azul con estrellas */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, #5c8dff 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 30%, #fff 0 2px, transparent 3px),
+    radial-gradient(circle at 35% 75%, #8db0ff 0 2px, transparent 3px),
+    radial-gradient(circle at 70% 80%, #fff 0 2px, transparent 3px),
+    linear-gradient(135deg,#0b318d,#1766c4,#08276f);
+  background-size:130px 130px,170px 170px,210px 210px,160px 160px,cover;
+  opacity:.95;
+}
+
+.phone{
+  position:relative;
+  width:min(420px,94vw);
+  height:min(850px,94vh);
+  overflow:hidden;
+  border-radius:30px;
+  background:linear-gradient(180deg,rgba(20,91,190,.92),rgba(5,35,105,.97));
+  box-shadow:0 0 35px rgba(255,255,255,.25);
+  border:3px solid rgba(255,255,255,.5);
+  z-index:1;
+}
+
+.content{
+  height:100%;
+  overflow-y:auto;
+  padding:45px 22px 35px;
+  text-align:center;
+  scrollbar-width:none;
+}
+.content::-webkit-scrollbar{display:none;}
+
+h1{
+  color:#ff72c5;
+  font-size:clamp(30px,9vw,48px);
+  text-shadow:3px 3px 0 #fff, 0 0 15px rgba(255,105,190,.8);
+  margin-bottom:18px;
+  font-family:cursive;
+}
+
+.message{
+  color:#ffe84d;
+  font-size:19px;
+  line-height:1.55;
+  font-weight:bold;
+  text-shadow:1px 2px 2px #173d7a;
+  background:rgba(0,0,80,.18);
+  border-radius:20px;
+  padding:15px;
+  margin-bottom:20px;
+}
+
+/* Ramo */
+.bouquet{
+  position:relative;
+  height:185px;
+  margin:5px auto 5px;
+}
+
+.stem{
+  position:absolute;
+  width:5px;
+  height:130px;
+  background:#58a95b;
+  bottom:15px;
+  left:50%;
+  transform-origin:bottom;
+  border-radius:10px;
+}
+.s1{transform:rotate(-24deg);}
+.s2{transform:rotate(-10deg);}
+.s3{transform:rotate(9deg);}
+.s4{transform:rotate(24deg);}
+
+.leaf{
+  position:absolute;
+  width:38px;
+  height:18px;
+  background:#55a95d;
+  border-radius:100% 0 100% 0;
+  bottom:65px;
+}
+.l1{left:28%;transform:rotate(25deg);}
+.l2{right:28%;transform:scaleX(-1) rotate(25deg);}
+.l3{left:38%;bottom:48px;transform:rotate(-20deg);}
+
+.flower{
+  position:absolute;
+  width:58px;
+  height:58px;
+  left:50%;
+  top:15px;
+  transform:translateX(-50%);
+}
+.flower:nth-of-type(1){margin-left:-65px;margin-top:15px;}
+.flower:nth-of-type(2){margin-left:65px;margin-top:15px;}
+.flower:nth-of-type(3){margin-left:-32px;margin-top:-18px;}
+.flower:nth-of-type(4){margin-left:32px;margin-top:-18px;}
+
+.petal{
+  position:absolute;
+  width:29px;
+  height:40px;
+  background:white;
+  border-radius:50%;
+  left:15px;
+  top:8px;
+  box-shadow:0 0 7px rgba(255,255,255,.7);
+}
+.p1{transform:rotate(0deg) translateY(-13px);}
+.p2{transform:rotate(72deg) translateY(-13px);}
+.p3{transform:rotate(144deg) translateY(-13px);}
+.p4{transform:rotate(216deg) translateY(-13px);}
+.p5{transform:rotate(288deg) translateY(-13px);}
+
+.center{
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:#ffd84a;
+  border-radius:50%;
+  left:20px;
+  top:20px;
+  z-index:2;
+}
+
+.bow{
+  position:absolute;
+  bottom:15px;
+  left:50%;
+  transform:translateX(-50%);
+  width:70px;
+  height:35px;
+}
+.bow::before,.bow::after{
+  content:"";
+  position:absolute;
+  width:36px;
+  height:28px;
+  background:#ff6fbf;
+  border:2px solid #fff;
+  top:0;
+}
+.bow::before{
+  right:34px;
+  border-radius:50% 10% 50% 10%;
+  transform:rotate(18deg);
+}
+.bow::after{
+  left:34px;
+  border-radius:10% 50% 10% 50%;
+  transform:rotate(-18deg);
+}
+.knot{
+  position:absolute;
+  left:27px;
+  top:7px;
+  width:17px;
+  height:17px;
+  background:#ff3e9e;
+  border-radius:50%;
+  z-index:3;
+}
+
+/* Carritos */
+.cars{
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+  margin-top:10px;
+}
+
+.car-card{
+  position:relative;
+  min-height:100px;
+  border-radius:18px;
+  padding:15px;
+  background:linear-gradient(135deg,#ff4fa8,#ff9fd3);
+  border:2px solid white;
+  box-shadow:0 6px 14px rgba(0,0,0,.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.car-card:nth-child(2){
+  background:linear-gradient(135deg,#ffcf38,#fff09b);
+}
+.car-card:nth-child(3){
+  background:linear-gradient(135deg,#58a9ff,#b8ddff);
+}
+
+.car{
+  position:relative;
+  width:175px;
+  height:65px;
+  filter:drop-shadow(0 5px 3px rgba(0,0,0,.3));
+}
+
+.car-body{
+  position:absolute;
+  left:10px;
+  bottom:10px;
+  width:155px;
+  height:35px;
+  border-radius:25px 35px 12px 12px;
+  background:#e92e3f;
+  border:3px solid #222;
+}
+.car-card:nth-child(2) .car-body{background:#ff7b18;}
+.car-card:nth-child(3) .car-body{background:#28a4ef;}
+
+.car-top{
+  position:absolute;
+  left:47px;
+  top:9px;
+  width:82px;
+  height:30px;
+  background:#252b39;
+  border:3px solid #222;
+  border-radius:40px 45px 5px 5px;
+}
+.window{
+  position:absolute;
+  left:8px;
+  top:5px;
+  width:61px;
+  height:17px;
+  background:#8edcff;
+  border-radius:10px;
+}
+
+.wheel{
+  position:absolute;
+  width:30px;
+  height:30px;
+  background:#171717;
+  border:4px solid #777;
+  border-radius:50%;
+  bottom:0;
+}
+.w1{left:25px;}
+.w2{right:25px;}
+
+.car-text{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  color:white;
+  font-size:9px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+/* Botón */
+.open-btn{
+  border:none;
+  margin-top:20px;
+  padding:14px 25px;
+  border-radius:30px;
+  background:#ff62b7;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+  cursor:pointer;
+}
+
+.open-btn:active{
+  transform:scale(.95);
+}
+
+/* Corazones flotantes */
+.heart{
+  position:absolute;
+  bottom:-30px;
+  font-size:20px;
+  animation:float 6s linear infinite;
+  opacity:.85;
+  pointer-events:none;
+}
+
+.h1{left:10%;animation-delay:0s;}
+.h2{left:28%;animation-delay:2s;}
+.h3{left:55%;animation-delay:1s;}
+.h4{left:80%;animation-delay:3s;}
+
+@keyframes float{
+  0%{transform:translateY(0) rotate(0);opacity:0;}
+  15%{opacity:1;}
+  100%{transform:translateY(-900px) rotate(25deg);opacity:0;}
+}
+
+/* Pantalla de entrada */
+.cover{
+  position:absolute;
+  inset:0;
+  z-index:20;
+  background:linear-gradient(135deg,#0b318d,#2679d7);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  text-align:center;
+}
+
+.cover h2{
+  color:#fff;
+  font-size:35px;
+  font-family:cursive;
+  margin-bottom:15px;
+}
+
+.cover p{
+  color:#ffe84d;
+  font-size:18px;
+  margin-bottom:25px;
+}
+
+.cover button{
+  border:0;
+  padding:15px 28px;
+  border-radius:30px;
+  background:#ff62b7;
+  color:white;
+  font-weight:bold;
+  font-size:18px;
+  box-shadow:0 5px 18px rgba(0,0,0,.3);
+}
+
+.hidden{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+
+  <div class="cover" id="cover">
+    <h2>💗 Tengo un regalo para ti 💗</h2>
+    <p>Algo pequeño, pero hecho con mucho cariño.</p>
+    <button onclick="abrirRegalo()">Abrir mi regalo 🎁</button>
+  </div>
+
+  <div class="content">
+
+    <h1>Para ti mi amor 💗</h1>
+
+    <div class="message">
+      Gracias por llegar a mi vida. 💕<br><br>
+      Aunque no tengamos mucho tiempo juntos y aunque nuestra relación sea virtual,
+      quiero que sepas que te quiero muchísimo y que eres una persona muy especial para mí.
+      <br><br>
+      Gracias por cada momento, cada palabra, cada sonrisa y por estar presente de una
+      manera tan bonita. Espero que podamos seguir compartiendo muchos momentos juntos.
+      💗✨
+    </div>
+
+    <div class="bouquet">
+
+      <div class="stem s1"></div>
+      <div class="stem s2"></div>
+      <div class="stem s3"></div>
+      <div class="stem s4"></div>
+
+      <div class="leaf l1"></div>
+      <div class="leaf l2"></div>
+      <div class="leaf l3"></div>
+
+      <div class="flower">
+        <span class="petal p1"></span><span class="petal p2"></span>
+        <span class="petal p3"></span><span class="petal p4"></span>
+        <span class="petal p5"></span><span class="center"></span>
+      </div>
+
+      <div class="flower">
+        <span class="petal p1"></span><span class="petal p2"></span>
+        <span class="petal p3"></span><span class="petal p4"></span>
+        <span class="petal p5"></span><span class="center"></span>
+      </div>
+
+      <div class="flower">
+        <span class="petal p1"></span><span class="petal p2"></span>
+        <span class="petal p3"></span><span class="petal p4"></span>
+        <span class="petal p5"></span><span class="center"></span>
+      </div>
+
+      <div class="flower">
+        <span class="petal p1"></span><span class="petal p2"></span>
+        <span class="petal p3"></span><span class="petal p4"></span>
+        <span class="petal p5"></span><span class="center"></span>
+      </div>
+
+      <div class="bow"><span class="knot"></span></div>
+    </div>
+
+    <div class="cars">
+
+      <div class="car-card">
+        <div class="car">
+          <div class="car-top"><div class="window"></div></div>
+          <div class="car-body"></div>
+          <div class="wheel w1"></div>
+          <div class="wheel w2"></div>
+          <div class="car-text">LOVE RIDE</div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car">
+          <div class="car-top"><div class="window"></div></div>
+          <div class="car-body"></div>
+          <div class="wheel w1"></div>
+          <div class="wheel w2"></div>
+          <div class="car-text">SWEET CAR</div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car">
+          <div class="car-top"><div class="window"></div></div>
+          <div class="car-body"></div>
+          <div class="wheel w1"></div>
+          <div class="wheel w2"></div>
+          <div class="car-text">FOR YOU</div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="open-btn" onclick="mostrarMensaje()">💌 Una cosita más</button>
+
+    <div id="extra" style="display:none;color:white;font-size:18px;font-weight:bold;margin-top:18px;line-height:1.5;">
+      No importa la distancia ni la pantalla que nos separe,
+      cada momento compartido significa mucho para mí. 💗
+      <br><br>
+      Gracias por formar parte de mi vida. ✨
+    </div>
+
+  </div>
+
+  <div class="heart h1">💗</div>
+  <div class="heart h2">💕</div>
+  <div class="heart h3">💖</div>
+  <div class="heart h4">💗</div>
+
+</div>
+
+<script>
+function abrirRegalo(){
+  document.getElementById("cover").classList.add("hidden");
+
+  // Intentar iniciar una melodía suave después del toque del usuario.
+  reproducirMusica();
+}
+
+function mostrarMensaje(){
+  const extra = document.getElementById("extra");
+  extra.style.display = extra.style.display === "none" ? "block" : "none";
+}
+
+/* Melodía sencilla generada con Web Audio API.
+   No necesita descargar ningún archivo de música. */
+let audioContext;
+let musicStarted = false;
+
+function reproducirMusica(){
+  if(musicStarted) return;
+  musicStarted = true;
+
+  try{
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    const notas = [
+      261.63,329.63,392.00,329.63,
+      293.66,349.23,440.00,349.23,
+      261.63,329.63,392.00,523.25
+    ];
+
+    let tiempo = audioContext.currentTime;
+
+    notas.forEach((frecuencia,i)=>{
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      osc.type = "sine";
+      osc.frequency.value = frecuencia;
+
+      gain.gain.setValueAtTime(0, tiempo);
+      gain.gain.linearRampToValueAtTime(0.07, tiempo + 0.03);
+      gain.gain.linearRampToValueAtTime(0, tiempo + 0.45);
+
+      osc.connect(gain);
+      gain.connect(audioContext.destination);
+
+      osc.start(tiempo);
+      osc.stop(tiempo + 0.5);
+
+      tiempo += 0.48;
+    });
+  }catch(e){
+    console.log("El navegador no permite reproducir audio:",e);
+  }
+}
+</script>
+
+</body>
+</html>
